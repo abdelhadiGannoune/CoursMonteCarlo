@@ -13,10 +13,12 @@
 
         private double PriceForward()
         {
+            Produit produit = new Produit(1.0, 50);
+
             double forward = GetForward();
-            double discountFactor = GetDiscountFactor();
-            double strike = GetStrike();
-            return discountFactor * (forward - strike);
+            double discountFactor = GetDiscountFactor(produit.Maturity);
+                                
+            return discountFactor * (forward - produit.Strike);
         }
 
         private double GetForward()
@@ -24,10 +26,9 @@
             return 60.0;
         }
 
-        private double GetDiscountFactor()
+        private double GetDiscountFactor(double maturity)
         {
             double rate = GetRate();
-            double maturity = GetMaturity();
             return 1 / (1 + rate * maturity);
         }
 
@@ -36,14 +37,6 @@
             return 0.01;
         }
 
-        private double GetMaturity()
-        {
-            return 1.0;
-        }
-
-        private double GetStrike()
-        {
-            return 58.0;
-        }
+        
     }
 }

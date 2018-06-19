@@ -12,7 +12,6 @@
         public class B
         {
             protected double y ;
-            
         }
 
         public class C : B
@@ -30,6 +29,7 @@
         {
             A a = new A();
             var test1 =a.X;
+            a.X = 0;
             //var test 2 = a.x;
 
             B b = new B();
